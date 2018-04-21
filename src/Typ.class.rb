@@ -1,6 +1,7 @@
 def initialize object
   @object = object
-  @gates, @fails = [], []
+  @gates = self.class.gates.map { |gate| gate.new object }
+  @fails = @gates.reject &:ok?
 end
 
 attr_reader :object, :gates, :fails
@@ -11,3 +12,5 @@ end
 
 def to object
 end
+
+extend Singleton
