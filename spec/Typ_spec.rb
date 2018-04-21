@@ -20,7 +20,7 @@ describe Typ do
       context 'when the first element is a Symbol' do
         let :positive do
           Class.new Typ do
-            is_a [:>, 0]
+            is [:>, 0]
           end
         end
 
@@ -43,7 +43,7 @@ describe Typ do
       context 'when the second element is a Symbol' do
         let :between_one_and_three do
           Class.new Typ do
-            is_a [1...3, :include?]
+            is [1...3, :include?]
           end
         end
 
@@ -67,7 +67,7 @@ describe Typ do
         it 'raises an error during definition' do
           expect {
             Class.new Typ do
-              is_a [1, 2, 3]
+              is [1, 2, 3]
             end
           }.to raise_error RuntimeError
         end

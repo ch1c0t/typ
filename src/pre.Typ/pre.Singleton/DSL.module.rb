@@ -1,4 +1,4 @@
-def is_a type
+def is type
   case type
   when Array
     gates << Gate::FromArray[type]
