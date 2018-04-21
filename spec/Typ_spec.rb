@@ -13,8 +13,6 @@ describe Typ do
 
     assert { typ.fails.is_a? Array }
     assert { typ.fails.empty? }
-
-    assert { typ.respond_to? :to }
   end
 
   describe '.is' do
