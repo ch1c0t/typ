@@ -5,7 +5,7 @@ describe Typ do
     object = Object.new
     typ = Typ.new object
 
-    assert { typ.object.eql? object }
+    assert { typ.it.eql? object }
     assert { typ.ok? }
 
     assert { typ.gates.is_a? Array }
