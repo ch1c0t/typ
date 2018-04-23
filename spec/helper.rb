@@ -1,5 +1,4 @@
 require 'typ'
-require_relative 'typs'
 
 require 'rspec/power_assert'
 RSpec::PowerAssert.example_assertion_alias :assert

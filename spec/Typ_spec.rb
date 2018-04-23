@@ -87,7 +87,12 @@ describe Typ do
       let :abba_string do
         Class.new do
           include Typ
-          is StringWhichIncludesA
+          is Class.new {
+            include Typ
+
+            is [:is_a?, String]
+            is [:include?, ?a]
+          }
           is [:include?, ?b]
         end
       end
@@ -114,6 +119,24 @@ describe Typ do
         assert { typ.gates.size == 2 }
         assert { typ.fails.size == 1 }
       end
+    end # when a Typ was passed
+
+    context 'when a wrong object was passed' do
+      it 'raises an error' do
+        expect {
+          Class.new do
+            include Typ
+            is :wrong_object
+          end
+        }.to raise_error RuntimeError, "don't know how to create a Gate from wrong_object"
+
+        expect {
+          Class.new do
+            include Typ
+            is Object
+          end
+        }.to raise_error RuntimeError, "don't know how to create a Gate from Object"
+      end
     end
-  end
-end
+  end # .is
+end # Typ

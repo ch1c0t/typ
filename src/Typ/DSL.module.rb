@@ -1,3 +1,7 @@
+def gates
+  @gates ||= []
+end
+
 def is type
   case type
   when Array

@@ -1,5 +1,5 @@
 def self.included mod
-  mod.extend Singleton
+  mod.extend DSL
 end
 
 def initialize it
