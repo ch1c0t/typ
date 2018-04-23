@@ -1,3 +1,7 @@
+def self.included mod
+  mod.extend Singleton
+end
+
 def initialize it
   @it = it
   @gates = self.class.gates.map { |gate| gate.new it }
@@ -9,5 +13,3 @@ attr_reader :it, :gates, :fails
 def ok?
   fails.empty?
 end
-
-extend Singleton

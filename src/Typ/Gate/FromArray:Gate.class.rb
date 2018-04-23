@@ -1,6 +1,4 @@
 class << self
-  attr_accessor :check
-
   def [] array
     check = if array[0].is_a?(Symbol)
       method, *arguments = array
@@ -16,8 +14,4 @@ class << self
     gate.check = check
     gate
   end
-end
-
-def initialize object
-  @ok = self.class.check[object]
 end
