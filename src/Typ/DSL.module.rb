@@ -5,7 +5,7 @@ end
 def is type
   case type
   when Array
-    gates << Gate::FromArray[type]
+    gates << Is::Array[type]
   when Class
     if type.include? Typ
       gates << type
