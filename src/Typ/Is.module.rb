@@ -1,4 +1,8 @@
-class << self
+def self.included gate
+  gate.extend Singleton
+end
+
+module Singleton
   attr_accessor :check
 end
 
