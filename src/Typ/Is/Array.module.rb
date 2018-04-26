@@ -11,12 +11,8 @@ class << self
     end
 
     gate = Class.new
-
-    gate.include Is
-    gate.check = check
-
     gate.include self
-    gate.array = array
+    gate.check, gate.array = check, array
     gate
   end
 end
@@ -26,9 +22,17 @@ def self.included gate
 end
 
 module Singleton
-  attr_accessor :array
+  attr_accessor :check, :array
 end
 
 def to_a
   self.class.array
+end
+
+def ok?
+  @ok
+end
+
+def initialize it
+  @ok = self.class.check[it]
 end
