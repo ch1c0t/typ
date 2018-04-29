@@ -1,4 +1,4 @@
-require_relative 'helper'
+require 'helper'
 
 describe Typ::Is::Array do
   it '#to_a' do
