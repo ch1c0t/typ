@@ -16,3 +16,10 @@ def is type
     fail "don't know how to create a Gate from #{type}"
   end
 end
+
+def is_a type
+  case type
+  when Module
+    gates << IsA.new(type)
+  end
+end
