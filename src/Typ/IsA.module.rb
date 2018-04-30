@@ -22,5 +22,8 @@ def ok?
 end
 
 def initialize it
+  @it = it
   @ok = self.class.check[it]
 end
+
+attr_reader :it
