@@ -1,23 +1,31 @@
 require 'helper'
 
 describe Typ do
-  it 'has the public API' do
-    it = 1
-
-    typ = Class.new do
+  let :typ_class do
+    Class.new do
       include Typ
       is [:>, 0]
     end
+  end
 
-    instance = typ.new it
+  let(:it) { 1 }
+  let(:typ) { typ_class.new it }
 
-    assert { instance.it.eql? it }
-    assert { instance.ok? }
+  it '#ok?' do
+    assert { typ.ok? }
+  end
 
-    assert { instance.gates.is_a? Array }
-    assert { instance.gates.size == 1 }
+  it '#it' do
+    assert { typ.it.eql? it }
+  end
 
-    assert { instance.fails.is_a? Array }
-    assert { instance.fails.empty? }
+  it '#gates' do
+    assert { typ.gates.is_a? Array }
+    assert { typ.gates.size == 1 }
+  end
+
+  it '#fails' do
+    assert { typ.fails.is_a? Array }
+    assert { typ.fails.empty? }
   end
 end
