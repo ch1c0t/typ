@@ -29,10 +29,4 @@ def to_a
   self.class.array
 end
 
-def ok?
-  @ok
-end
-
-def initialize it
-  @ok = self.class.check[it]
-end
+include Gate
