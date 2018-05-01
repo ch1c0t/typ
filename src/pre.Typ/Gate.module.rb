@@ -7,7 +7,7 @@ end
 
 # Should set @ok to be true or false
 def check
-  @ok = self.class.check[it]
+  @ok = self.class.check === it
 end
 
 def ok?

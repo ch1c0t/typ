@@ -2,21 +2,58 @@ require 'helper'
 
 describe '.is_a' do
   context 'when a Module was passed' do
-    let :string do
-      Class.new do
-        include Typ
-        is_a String
+    context 'without params' do
+      let :string do
+        Class.new do
+          include Typ
+          is_a String
+        end
+      end
+
+      it 'passes' do
+        typ = string.new 'indeed a String'
+        assert { typ.ok? }
+      end
+
+      it 'fails' do
+        typ = string.new :some_symbol
+        assert { not typ.ok? }
       end
     end
 
-    it 'passes' do
-      typ = string.new 'indeed a String'
-      assert { typ.ok? }
-    end
+    context 'with params' do
+      context 'Hash' do
+        let :typ_class do
+          Class.new do
+            include Typ
+            is_a Hash, Symbol => String
+          end
+        end
 
-    it 'fails' do
-      typ = string.new :some_symbol
-      assert { not typ.ok? }
+        it 'passes' do
+          hash = { a: 'some string', b: 'another string' }
+          typ = typ_class.new hash
+          assert { typ.ok? }
+        end
+
+        it 'fails when not a Hash was passed' do
+          array = [1,2,3]
+          typ = typ_class.new array
+          assert { not typ.ok? }
+        end
+
+        it 'fails when keys have wrong types' do
+          hash = { 'a' => 'some string', 'b' => 'another string' }
+          typ = typ_class.new hash
+          assert { not typ.ok? }
+        end
+
+        it 'fails when values have wrong types' do
+          hash = { a: 1, b: 2 }
+          typ = typ_class.new hash
+          assert { not typ.ok? }
+        end
+      end
     end
   end
 

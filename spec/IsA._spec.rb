@@ -9,6 +9,6 @@ describe Typ::IsA do
 
   it '.type' do
     is_a = described_class.new String
-    assert { is_a.type == String }
+    assert { is_a.type.to_s == String.to_s }
   end
 end

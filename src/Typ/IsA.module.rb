@@ -1,10 +1,10 @@
 class << self
-  def new type
-    check = -> it { it.is_a? type }
+  def new type, params = {}
+    type = Type.new type, params
 
     gate = Class.new
     gate.include self
-    gate.type, gate.check = type, check
+    gate.type, gate.check = type, type
     gate
   end
 end

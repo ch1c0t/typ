@@ -17,10 +17,10 @@ def is type
   end
 end
 
-def is_a type
+def is_a type, params = {}
   case type
   when Module
-    gates << IsA.new(type)
+    gates << IsA.new(type, params)
   else
     fail "don't know how to create a Gate from #{type}"
   end
