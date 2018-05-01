@@ -1,5 +1,6 @@
 def self.included mod
   mod.extend DSL
+  mod.extend PatternMatching
 end
 
 include Gate

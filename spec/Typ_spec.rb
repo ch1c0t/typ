@@ -28,4 +28,15 @@ describe Typ do
     assert { typ.fails.is_a? Array }
     assert { typ.fails.empty? }
   end
+
+  it '.===' do
+    bool = case it
+    when typ_class
+      true
+    else
+      false
+    end
+
+    expect(bool).to be true
+  end
 end
