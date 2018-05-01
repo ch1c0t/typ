@@ -7,11 +7,6 @@ describe Typ::IsA do
     assert { gate.it == 'some' }
   end
 
-  it '.type' do
-    is_a = described_class.new String
-    assert { is_a.type.to_s == String.to_s }
-  end
-
   describe Typ::IsA::Type do
     describe '#to_s'  do
       it 'without params' do

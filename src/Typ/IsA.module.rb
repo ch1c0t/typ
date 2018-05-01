@@ -4,7 +4,7 @@ class << self
 
     gate = Class.new
     gate.include self
-    gate.type, gate.check = type, type
+    gate.check = type
     gate
   end
 end
@@ -14,7 +14,7 @@ def self.included gate
 end
 
 module Singleton
-  attr_accessor :type, :check
+  attr_accessor :check
 end
 
 include Gate
