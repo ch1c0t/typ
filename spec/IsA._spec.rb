@@ -11,4 +11,18 @@ describe Typ::IsA do
     is_a = described_class.new String
     assert { is_a.type.to_s == String.to_s }
   end
+
+  describe Typ::IsA::Type do
+    describe '#to_s'  do
+      it 'without params' do
+        type = described_class.new Hash
+        expect(type.to_s).to eq 'Hash'
+      end
+
+      it 'with params' do
+        type = described_class.new Hash, Symbol => String
+        expect(type.to_s).to eq 'Hash, {Symbol=>String}'
+      end
+    end
+  end
 end

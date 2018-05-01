@@ -1,4 +1,4 @@
-def initialize type, params
+def initialize type, params = {}
   @type, @params = type, params
 
   @check = if @params.empty?
@@ -21,6 +21,6 @@ def to_s
   if @params.empty?
     @type.to_s
   else
-    "#{@type}, #{params}"
+    "#{@type}, #{@params}"
   end
 end
