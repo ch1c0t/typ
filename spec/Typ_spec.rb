@@ -30,13 +30,21 @@ describe Typ do
   end
 
   it '.===' do
-    bool = case it
+    true_value = case 1
     when typ_class
       true
     else
       false
     end
 
-    expect(bool).to be true
+    false_value = case -1
+    when typ_class
+      true
+    else
+      false
+    end
+
+    expect(true_value).to be true
+    expect(false_value).to be false
   end
 end
