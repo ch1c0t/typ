@@ -54,6 +54,33 @@ describe '.is_a' do
           assert { not typ.ok? }
         end
       end
+
+      context 'Array' do
+        let :typ_class do
+          Class.new do
+            include Typ
+            is_a Array, of: Symbol
+          end
+        end
+
+        it 'passes' do
+          array = [:a,:b,:c]
+          typ = typ_class.new array
+          assert { typ.ok? }
+        end
+
+        it 'fails when not an Array was passed' do
+          hash = {}
+          typ = typ_class.new hash
+          assert { not typ.ok? }
+        end
+
+        it 'fails when not an Array of Symbols was passed' do
+          array = [1,2,3]
+          typ = typ_class.new array
+          assert { not typ.ok? }
+        end
+      end
     end
   end
 

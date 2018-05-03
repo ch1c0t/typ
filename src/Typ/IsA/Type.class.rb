@@ -1,15 +1,24 @@
 def initialize type, params = {}
   @type, @params = type, params
 
+  param = params[:of]
+
   @check = if @params.empty?
              -> it { it.is_a? @type }
            else
-             key_type, value_type = params.first
-             -> it {
-               it.is_a?(@type) &&
-                 it.keys.all? {|k| k.is_a? key_type } &&
-                 it.values.all? {|v| v.is_a? value_type }
-             }
+             if param
+               -> it {
+                 it.is_a?(@type) &&
+                   it.all? { |element| element.is_a? param }
+               }
+             else
+               key_type, value_type = params.first
+               -> it {
+                 it.is_a?(@type) &&
+                   it.keys.all? {|k| k.is_a? key_type } &&
+                   it.values.all? {|v| v.is_a? value_type }
+               }
+             end
            end
 end
 
