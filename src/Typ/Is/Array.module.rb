@@ -1,18 +1,33 @@
-class << self
-  def new array
-    check = if array[0].is_a?(Symbol)
+class Check
+  def initialize array
+    @array = array
+    @check = if array[0].is_a?(Symbol)
       method, *arguments = array
-      -> receiver { receiver.send method, *arguments }
+      -> it { it.send method, *arguments }
     elsif array[1].is_a?(Symbol)
       receiver, method = array
-      -> argument { receiver.send method, argument }
+      -> it { receiver.send method, it }
     else
       fail "not sure how to handle #{array} yet"
     end
+  end
+
+  def === it
+    @check === it
+  end
+
+  def to_a
+    @array
+  end
+end
+
+class << self
+  def new array
+    check = Check.new array
 
     gate = Class.new
     gate.include self
-    gate.check, gate.array = check, array
+    gate.check = check
     gate
   end
 end
@@ -22,11 +37,11 @@ def self.included gate
 end
 
 module Singleton
-  attr_accessor :check, :array
+  attr_accessor :check
 end
 
 def to_a
-  self.class.array
+  self.class.check.to_a
 end
 
 include Gate
