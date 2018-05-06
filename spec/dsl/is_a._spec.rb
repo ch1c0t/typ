@@ -91,7 +91,8 @@ describe '.is_a' do
           include Typ
           is_a 1
         end
-      }.to raise_error RuntimeError, "don't know how to create a Gate from 1"
+      }.to raise_error Typ::DSL::CannotCreateGate,
+      "Don't know how to create #is_a from 1"
     end
   end
 end

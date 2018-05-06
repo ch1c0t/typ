@@ -10,10 +10,10 @@ def is type
     if type.include? Typ
       gates << type
     else
-      fail "don't know how to create a Gate from #{type}"
+      fail CannotCreateGate.new(__method__, type)
     end
   else
-    fail "don't know how to create a Gate from #{type}"
+    fail CannotCreateGate.new(__method__, type)
   end
 end
 
@@ -22,6 +22,6 @@ def is_a type, params = {}
   when Module
     gates << IsA.new(type, params)
   else
-    fail "don't know how to create a Gate from #{type}"
+    fail CannotCreateGate.new(__method__, type)
   end
 end

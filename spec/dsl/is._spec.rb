@@ -107,14 +107,16 @@ describe '.is' do
           include Typ
           is :wrong_object
         end
-      }.to raise_error RuntimeError, "don't know how to create a Gate from wrong_object"
+      }.to raise_error Typ::DSL::CannotCreateGate,
+      "Don't know how to create #is from wrong_object"
 
       expect {
         Class.new do
           include Typ
           is Object
         end
-      }.to raise_error RuntimeError, "don't know how to create a Gate from Object"
+      }.to raise_error Typ::DSL::CannotCreateGate,
+      "Don't know how to create #is from Object"
     end
   end
 end # .is
