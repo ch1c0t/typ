@@ -1,5 +1,5 @@
 module DSL
-  def typ name = :typ, &block
+  def typ name = :t, &block
     let name do
       Class.new do
         include Typ
@@ -8,7 +8,7 @@ module DSL
     end
   end
 
-  def good value, name = :typ, &block
+  def good value, name = :t, &block
     it "#{value} is #{name}" do
       typ = eval name.to_s
       instance = typ.new value
@@ -18,7 +18,7 @@ module DSL
     end
   end
 
-  def bad value, name = :typ, &block
+  def bad value, name = :t, &block
     it "#{value} is not #{name}" do
       typ = eval name.to_s
       instance = typ.new value

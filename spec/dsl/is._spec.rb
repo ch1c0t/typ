@@ -3,32 +3,17 @@ require 'helper'
 describe '.is' do
   context 'when an Array was passed' do
     context 'when the first element is a Symbol' do
-      typ :positive do
+      typ do
         is [:>, 0]
       end
 
-      good 1, :positive do |i|
-        expect(i.gates.size).to eq 1
+      good 1 do |i|
+        assert { i.gates.size == 1 }
       end
 
-      bad -1, :positive do |i|
-        expect(i.gates.size).to eq 1
-        expect(i.fails.size).to eq 1
-      end
-
-      it 'passes' do
-        typ = positive.new 1
-
-        assert { typ.ok? }
-        assert { typ.gates.size == 1 }
-      end
-
-      it 'fails' do
-        typ = positive.new -1
-
-        assert { not typ.ok? }
-        assert { typ.gates.size == 1 }
-        assert { typ.fails.size == 1 }
+      bad -1 do |i|
+        assert { i.gates.size == 1 }
+        assert { i.fails.size == 1 }
       end
     end
 
