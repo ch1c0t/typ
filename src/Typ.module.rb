@@ -1,3 +1,6 @@
+require 'to_proc/refine'
+using ToProc::Refine
+
 def self.included mod
   mod.extend DSL
   mod.extend PatternMatching

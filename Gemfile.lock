@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     typ (0.0.6)
+      to_proc
 
 GEM
   remote: https://rubygems.org/
@@ -85,6 +86,7 @@ GEM
       rspec (>= 2.14)
     rspec-support (3.6.0)
     thread_safe (0.3.6)
+    to_proc (0.0.8)
     unparser (0.2.7)
       abstract_type (~> 0.0.7)
       adamantium (~> 0.2.0)
@@ -110,4 +112,4 @@ DEPENDENCIES
   typ!
 
 BUNDLED WITH
-   1.16.1
+   1.17.2

@@ -1,15 +1,9 @@
 class Check
   def initialize array
+    fail unless array[0].is_a?(Symbol) || array[1].is_a?(Symbol)
+
     @array = array
-    @check = if array[0].is_a?(Symbol)
-      method, *arguments = array
-      -> it { it.send method, *arguments }
-    elsif array[1].is_a?(Symbol)
-      receiver, method = array
-      -> it { receiver.send method, it }
-    else
-      fail "not sure how to handle #{array} yet"
-    end
+    @check = array.to_proc
   end
 
   def === it
