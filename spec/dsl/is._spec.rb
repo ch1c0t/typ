@@ -11,6 +11,11 @@ describe '.is' do
         expect(i.gates.size).to eq 1
       end
 
+      bad -1, :positive do |i|
+        expect(i.gates.size).to eq 1
+        expect(i.fails.size).to eq 1
+      end
+
       it 'passes' do
         typ = positive.new 1
 
