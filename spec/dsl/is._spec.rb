@@ -3,11 +3,8 @@ require 'helper'
 describe '.is' do
   context 'when an Array was passed' do
     context 'when the first element is a Symbol' do
-      let :positive do
-        Class.new do
-          include Typ
-          is [:>, 0]
-        end
+      typ :positive do
+        is [:>, 0]
       end
 
       it 'passes' do
