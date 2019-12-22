@@ -16,12 +16,3 @@ def is type
     fail CannotCreateGate.new(__method__, type)
   end
 end
-
-def is_a type, params = {}
-  case type
-  when Module
-    gates << IsA.new(type, params)
-  else
-    fail CannotCreateGate.new(__method__, type)
-  end
-end
