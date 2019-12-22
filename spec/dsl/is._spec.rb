@@ -7,6 +7,10 @@ describe '.is' do
         is [:>, 0]
       end
 
+      good 1, :positive do |i|
+        expect(i.gates.size).to eq 1
+      end
+
       it 'passes' do
         typ = positive.new 1
 

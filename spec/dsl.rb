@@ -7,4 +7,14 @@ module DSL
       end
     end
   end
+
+  def good value, name = :typ, &block
+    it "#{value} is #{name}" do
+      typ = eval name.to_s
+      instance = typ.new value
+
+      expect(instance.ok?).to be true
+      instance_exec instance, &block
+    end
+  end
 end
