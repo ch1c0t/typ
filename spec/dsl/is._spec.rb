@@ -7,14 +7,8 @@ describe '.is' do
         is [:>, 0]
       end
 
-      good 1 do |i|
-        assert { i.gates.size == 1 }
-      end
-
-      bad -1 do |i|
-        assert { i.gates.size == 1 }
-        assert { i.fails.size == 1 }
-      end
+      good 1
+      bad -1, fails: 1
     end
 
     context 'when the second element is a Symbol' do

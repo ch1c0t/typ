@@ -9,7 +9,7 @@ module DSL
   end
 
   def good value, name = :t, &block
-    it "#{value} is #{name}" do
+    it "(#{value} should be #{name})" do
       typ = eval name.to_s
       instance = typ.new value
 
@@ -18,12 +18,17 @@ module DSL
     end
   end
 
-  def bad value, name = :t, &block
-    it "#{value} is not #{name}" do
+  def bad value, name = :t, fails: nil, &block
+    it "(#{value} should not be #{name})" do
       typ = eval name.to_s
       instance = typ.new value
 
       expect(instance.ok?).to be false
+
+      if fails
+        expect(instance.fails.size).to eq fails
+      end
+
       instance_exec instance, &block if block_given?
     end
   end
