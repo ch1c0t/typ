@@ -56,7 +56,7 @@ describe '.is' do
           is :wrong_object
         end
       }.to raise_error Typ::DSL::CannotCreateGate,
-      "Don't know how to create #is from wrong_object"
+      "Don't know how to create #is from a Symbol: :wrong_object."
 
       expect {
         Class.new do
@@ -64,7 +64,7 @@ describe '.is' do
           is Object
         end
       }.to raise_error Typ::DSL::CannotCreateGate,
-      "Don't know how to create #is from Object"
+      "Don't know how to create #is from a Class: Object."
     end
   end
 end # .is
