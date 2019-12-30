@@ -13,5 +13,5 @@ attr_reader :gates, :fails
 def check
   @gates = self.class.gates.map { |gate| gate.new it }
   @fails = gates.reject &:ok?
-  @ok = fails.empty?
+  fails.empty?
 end
