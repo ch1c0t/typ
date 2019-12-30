@@ -27,7 +27,8 @@ describe '.is' do
             include Typ
             is [1, 2, 3]
           end
-        }.to raise_error RuntimeError
+        }.to raise_error Typ::DSL::CannotCreateGate,
+        "Don't know how to create #is from a Array: [1, 2, 3]."
       end
     end
   end

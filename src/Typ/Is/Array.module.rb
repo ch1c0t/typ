@@ -1,7 +1,5 @@
 class Check
   def initialize array
-    fail unless array[0].is_a?(Symbol) || array[1].is_a?(Symbol)
-
     @array = array
     @check = array.to_proc
   end
