@@ -4,6 +4,8 @@ end
 
 def is type
   case type
+  when Symbol
+    gates << Is::Symbol.new(type)
   when Array
     unless type[0].is_a?(Symbol) || type[1].is_a?(Symbol)
       fail CannotCreateGate.new(__method__, type)

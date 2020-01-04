@@ -1,6 +1,15 @@
 require 'helper'
 
 describe '.is' do
+  context 'when a Symbol was passed' do
+    typ do
+      is :empty?
+    end
+
+    good []
+    bad [1]
+  end
+
   context 'when an Array was passed' do
     context 'when the first element is a Symbol' do
       typ do
@@ -54,10 +63,10 @@ describe '.is' do
       expect {
         Class.new do
           include Typ
-          is :wrong_object
+          is 42
         end
       }.to raise_error Typ::DSL::CannotCreateGate,
-      "Don't know how to create #is from a Symbol: :wrong_object."
+      "Don't know how to create #is from a Integer: 42."
 
       expect {
         Class.new do
