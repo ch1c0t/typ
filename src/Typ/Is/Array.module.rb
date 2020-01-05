@@ -7,10 +7,6 @@ class Check
   def === it
     @check === it
   end
-
-  def to_a
-    @array
-  end
 end
 
 class << self
@@ -30,10 +26,6 @@ end
 
 module Singleton
   attr_accessor :check
-end
-
-def to_a
-  self.class.check.to_a
 end
 
 include Gate
