@@ -12,7 +12,6 @@ def initialize it
 end
 
 def check
-  self.class.check === it
 end
 
 def ok?
