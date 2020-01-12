@@ -12,7 +12,7 @@ class << self
   def new array
     check = Check.new array
 
-    gate = Class.new
+    gate = Gate.new
     gate.include self
     gate.check = check
     gate
@@ -26,5 +26,3 @@ end
 module Singleton
   attr_accessor :check
 end
-
-include Gate

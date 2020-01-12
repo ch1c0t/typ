@@ -1,3 +1,9 @@
+def self.new
+  c = Class.new
+  c.include Gate
+  c
+end
+
 attr_reader :it
 
 def initialize it
