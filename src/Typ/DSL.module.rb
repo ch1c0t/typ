@@ -12,7 +12,7 @@ def is type
     array = type
 
     unless array[0].is_a?(Symbol) || array[1].is_a?(Symbol)
-      fail CannotCreateGate.new(__method__, type)
+      cannot_create_gate __method__, type
     end
 
     test = array.to_proc
@@ -21,10 +21,10 @@ def is type
     if type.include? Typ
       gates << type
     else
-      fail CannotCreateGate.new(__method__, type)
+      cannot_create_gate __method__, type
     end
   else
-    fail CannotCreateGate.new(__method__, type)
+    cannot_create_gate __method__, type
   end
 end
 
@@ -39,4 +39,8 @@ private
     gate = Gate.new
     gate.include check
     gate
+  end
+
+  def cannot_create_gate method, type
+    fail CannotCreateGate.new(method, type)
   end
