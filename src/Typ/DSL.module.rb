@@ -42,5 +42,5 @@ private
   end
 
   def cannot_create_gate method, type
-    fail CannotCreateGate.new(method, type)
+    fail Error::CannotCreateGate.new(method, type)
   end

@@ -36,7 +36,7 @@ describe '.is' do
             include Typ
             is [1, 2, 3]
           end
-        }.to raise_error Typ::DSL::CannotCreateGate,
+        }.to raise_error Typ::Error::CannotCreateGate,
         "Don't know how to create #is from a Array: [1, 2, 3]."
       end
     end
@@ -65,7 +65,7 @@ describe '.is' do
           include Typ
           is 42
         end
-      }.to raise_error Typ::DSL::CannotCreateGate,
+      }.to raise_error Typ::Error::CannotCreateGate,
       "Don't know how to create #is from a Integer: 42."
 
       expect {
@@ -73,7 +73,7 @@ describe '.is' do
           include Typ
           is Object
         end
-      }.to raise_error Typ::DSL::CannotCreateGate,
+      }.to raise_error Typ::Error::CannotCreateGate,
       "Don't know how to create #is from a Class: Object."
     end
   end
