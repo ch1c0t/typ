@@ -4,11 +4,17 @@ def self.new
   c
 end
 
-attr_reader :it
+attr_reader :it, :error
 
 def initialize it
   @it = it
-  @ok = check
+  @ok = begin
+          fail unless (ok = check)
+          ok
+        rescue => e
+          @error = e
+          false
+        end
 end
 
 def check

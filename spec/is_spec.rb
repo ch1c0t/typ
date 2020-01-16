@@ -8,6 +8,10 @@ describe '.is' do
 
     good []
     bad [1]
+    bad :some_symbol do |i|
+      error = i.fails[0].error.inspect
+      expect(error).to eq 'RuntimeError'
+    end
   end
 
   context 'when an Array was passed' do
