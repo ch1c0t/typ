@@ -8,9 +8,9 @@ describe '.is' do
 
     good []
     bad [1]
-    bad :some_symbol do |i|
+    bad 42 do |i|
       error = i.fails[0].error.inspect
-      expect(error).to eq 'RuntimeError'
+      expect(error).to eq "#<NoMethodError: undefined method `empty?' for 42:Integer>"
     end
   end
 

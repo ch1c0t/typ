@@ -9,8 +9,7 @@ attr_reader :it, :error
 def initialize it
   @it = it
   @ok = begin
-          fail unless (ok = check)
-          ok
+          check
         rescue => e
           @error = e
           false
