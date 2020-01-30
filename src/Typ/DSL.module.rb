@@ -6,7 +6,7 @@ def is type
   case type
   when Symbol
     symbol = type
-    test = -> it { it.send symbol }
+    test = -> it { it.send symbol or bad_assertion(it, symbol) }
     gates << make_gate_with(test)
   when Array
     array = type
@@ -43,4 +43,8 @@ private
 
   def cannot_create_gate method, type
     fail Error::CannotCreateGate.new(method, type)
+  end
+
+  def bad_assertion it, name
+    fail Error::BadAssertion.new(it, name)
   end

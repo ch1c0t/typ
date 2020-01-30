@@ -7,7 +7,10 @@ describe '.is' do
     end
 
     good []
-    bad [1]
+    bad [1] do |i|
+      error = i.fails[0].error.inspect
+      expect(error).to eq '#<Typ::Error::BadAssertion: [1].empty?>'
+    end
     bad 42 do |i|
       error = i.fails[0].error.inspect
       expect(error).to eq "#<NoMethodError: undefined method `empty?' for 42:Integer>"
