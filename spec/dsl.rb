@@ -18,7 +18,7 @@ module DSL
     end
   end
 
-  def bad value, name = :t, fails: nil, &block
+  def bad value, name = :t, fails: nil, error: nil, &block
     it "(#{value} should not be #{name})" do
       typ = eval name.to_s
       instance = typ.new value
@@ -27,6 +27,11 @@ module DSL
 
       if fails
         expect(instance.fails.size).to eq fails
+      end
+
+      if error
+        e = instance.fails[0].error.inspect
+        expect(e).to eq error
       end
 
       instance_exec instance, &block if block_given?
