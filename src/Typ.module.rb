@@ -3,7 +3,7 @@ using ToProc::Refine
 
 def self.included mod
   mod.extend DSL
-  mod.extend PatternMatching
+  mod.extend Singleton
 end
 
 include Gate

@@ -38,7 +38,7 @@ describe '.is' do
             is [1, 2, 3]
           end
         }.to raise_error Typ::Error::CannotCreateGate,
-        "Don't know how to create #is from a Array: [1, 2, 3]."
+        "Don't know how to create a gate from [1, 2, 3]:Array."
       end
     end
   end
@@ -67,7 +67,7 @@ describe '.is' do
           is 42
         end
       }.to raise_error Typ::Error::CannotCreateGate,
-      "Don't know how to create #is from a Integer: 42."
+      "Don't know how to create a gate from 42:Integer."
 
       expect {
         Class.new do
@@ -75,7 +75,7 @@ describe '.is' do
           is Object
         end
       }.to raise_error Typ::Error::CannotCreateGate,
-      "Don't know how to create #is from a Class: Object."
+      "Don't know how to create a gate from Object:Class."
     end
   end
 end # .is
