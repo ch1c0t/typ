@@ -21,6 +21,14 @@ def its name, type
   gates << make_gate_with(test)
 end
 
+def key name, type
+  fetch_name = -> it { it[name] }
+  check_type = make_test_for type
+
+  test = fetch_name >> check_type
+  gates << make_gate_with(test)
+end
+
 private
   def make_test_for type
     case type
