@@ -1,6 +1,6 @@
 require 'helper'
 
-describe '.is_a' do
+describe '.its' do
   describe do
     typ do
       its :size, [:==, 3]
