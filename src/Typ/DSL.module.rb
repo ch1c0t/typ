@@ -27,11 +27,18 @@ private
     when Symbol
       -> it { it.send type or bad_assertion(it, type) }
     when Array
+      cannot_create_gate type unless type.size == 2
       unless type[0].is_a?(Symbol) || type[1].is_a?(Symbol)
         cannot_create_gate type
       end
 
-      type.to_proc
+      if type[0].is_a? Symbol
+        method, argument = type
+        -> it { it.send method, argument or bad_assertion(it, type) }
+      else
+        receiver, method = type
+        -> it { receiver.send method, it or bad_assertion(it, type) }
+      end
     when Class
       type if type.include? Typ
     end

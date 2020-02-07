@@ -7,7 +7,7 @@ describe '.is' do
     end
 
     good []
-    bad [1], error: '#<Typ::Error::BadAssertion: [1].empty?>'
+    bad [1], error: '#<Typ::Error::BadAssertion: [1] is empty?>'
     bad 42, error: "#<NoMethodError: undefined method `empty?' for 42:Integer>"
   end
 
