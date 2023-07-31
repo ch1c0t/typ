@@ -2,6 +2,8 @@ def gates
   @gates ||= []
 end
 
+include IsA
+
 def is type
   test = make_test_for type
 
