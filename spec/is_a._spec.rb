@@ -8,5 +8,12 @@ describe '.is_a' do
 
     good 'string'
     bad :symbol
+
+    it 'has correct #dsl_method and #dsl_literal' do
+      gate = t.new('string').gates.first
+
+      assert { gate.dsl_method == :is_a }
+      assert { gate.dsl_literal == String }
+    end
   end
 end

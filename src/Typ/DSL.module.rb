@@ -2,25 +2,12 @@ def gates
   @gates ||= []
 end
 
-include IsA
+def is literal
+  gates << Is.new(__method__, literal).gate
+end
 
-def is type
-  test = make_test_for type
-
-  if test
-    gate = if (Class === type)
-             type
-           else
-             gate = make_gate_with(test)
-             gate.dsl_method = __method__
-             gate.dsl_literal = type
-             gate
-           end
-
-    gates << gate
-  else
-    cannot_create_gate type
-  end
+def is_a literal
+  gates << IsA.new(__method__, literal).gate
 end
 
 def its name, type
@@ -69,7 +56,7 @@ private
       end
     end
 
-    gate = Gate.new
+    gate = Typ::Gate.new
     gate.include check
     gate
   end
