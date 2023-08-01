@@ -8,7 +8,15 @@ def is type
   test = make_test_for type
 
   if test
-    gate = (Class === type) ? type : make_gate_with(test)
+    gate = if (Class === type)
+             type
+           else
+             gate = make_gate_with(test)
+             gate.dsl_method = __method__
+             gate.dsl_literal = type
+             gate
+           end
+
     gates << gate
   else
     cannot_create_gate type

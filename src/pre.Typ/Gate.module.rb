@@ -1,8 +1,5 @@
-def self.new
-  c = Class.new
-  c.include Gate
-  c
-end
+extend New
+include DSLReaders
 
 attr_reader :it, :error
 
