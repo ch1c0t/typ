@@ -17,4 +17,5 @@ def enrich_gate
   augment_gate_with_check @test
   gate.dsl_method = @method
   gate.dsl_literal = @literal
+  gate.dsl_key = @kwargs[:name]
 end

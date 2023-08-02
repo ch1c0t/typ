@@ -9,5 +9,13 @@ describe '.its' do
     good [1,2,3]
     bad [1,2], error: "#<Typ::Error::BadAssertion: 2 is [:==, 3]>"
     bad Object, error: "#<NoMethodError: undefined method `size' for Object:Class>"
+
+    it 'has the DSL readers' do
+      gate = t.new([]).gates.first
+
+      assert { gate.dsl_method == :its }
+      assert { gate.dsl_literal == [:==, 3] }
+      assert { gate.dsl_key == :size }
+    end
   end
 end
