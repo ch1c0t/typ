@@ -1,6 +1,3 @@
-using ArrayPredicate
-using ArrayToTest
-
 def make
   type_check = test_for @literal
   @test = fetch_check >> type_check

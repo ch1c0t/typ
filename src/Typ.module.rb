@@ -1,3 +1,6 @@
+using ArrayPredicate
+using ArrayToTest
+
 def self.included mod
   mod.extend DSL
   mod.extend Singleton
