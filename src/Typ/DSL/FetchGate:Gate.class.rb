@@ -1,3 +1,6 @@
+using ArrayPredicate
+using ArrayToTest
+
 def make
   type_check = test_for @literal
   @test = fetch_check >> type_check
@@ -14,6 +17,8 @@ def test_for literal
     else
       super [:eql?, literal]
     end
+  when Array
+    literal.predicate? ? literal.to_test : (super [:eql?, literal])
   else
     super
   end

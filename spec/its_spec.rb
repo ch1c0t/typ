@@ -52,4 +52,52 @@ describe '.its' do
         error: '#<Typ::Error::BadAssertion: :some_other_string is [:eql?, :empty]>'
     end
   end
+
+  context 'Arrays' do
+    context 'as predicates' do
+      context 'when the first element is the method' do
+        typ do
+          its :to_a, [:include?, 3]
+        end
+
+        good [1,2,3]
+        good [3]
+        bad [1,2],
+          error: "#<Typ::Error::BadAssertion: [1, 2] is [:include?, 3]>"
+      end
+
+      context 'when the second element is the method' do
+        typ do
+          its :to_s, ['string', :include?]
+        end
+
+        good 'ing'
+        good 'i'
+        bad 'a',
+          error: '#<Typ::Error::BadAssertion: "a" is ["string", :include?]>'
+      end
+    end
+
+    context 'as values' do
+      context 'when the size is smaller or larger than 2' do
+        typ do
+          its :to_a, [:a, :b, :c]
+        end
+
+        good [:a, :b, :c]
+        bad [:a],
+          error: '#<Typ::Error::BadAssertion: [:a] is [:eql?, [:a, :b, :c]]>'
+      end
+
+      context 'without Symbols, when the size is 2' do
+        typ do
+          its :to_a, [1,2]
+        end
+
+        good [1,2]
+        bad [1],
+          error: '#<Typ::Error::BadAssertion: [1] is [:eql?, [1, 2]]>'
+      end
+    end
+  end
 end
