@@ -5,8 +5,15 @@ def make
 end
 
 def test_for literal
-  if literal.is_a? Integer
+  case literal
+  when Integer
     super [:eql?, literal]
+  when Symbol
+    if literal.end_with? ??
+      super
+    else
+      super [:eql?, literal]
+    end
   else
     super
   end
