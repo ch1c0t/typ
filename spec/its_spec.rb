@@ -100,4 +100,44 @@ describe '.its' do
       end
     end
   end
+
+  context 'Classes' do
+    context 'as predicates' do
+      before do
+        nested_Typ = Class.new do
+          include Typ
+          is [:>, 0]
+        end
+
+        @Typ = Class.new do
+          include Typ
+          its :nested, nested_Typ
+        end
+      end
+
+      it 'passes if the nested attribute is more than 0' do
+        object = Struct.new(:nested).new(1)
+        typ = @Typ.new object
+
+        expect(typ.ok?).to be true
+      end
+
+      it 'fails if the nested attribute is 0' do
+        object = Struct.new(:nested).new(0)
+        typ = @Typ.new object
+
+        expect(typ.ok?).to be false
+      end
+    end
+
+    context 'as values' do
+      typ do
+        its :nested, String
+      end
+
+      good Struct.new(:nested).new(String)
+      bad Struct.new(:nested).new(:not_String_class),
+        error: '#<Typ::Error::BadAssertion: :not_String_class is [:eql?, String]>'
+    end
+  end
 end

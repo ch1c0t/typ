@@ -16,6 +16,8 @@ def test_for literal
     end
   when Array
     literal.predicate? ? literal.to_test : (super [:eql?, literal])
+  when Class
+    literal.include?(Typ) ? super : (super [:eql?, literal])
   else
     super
   end
