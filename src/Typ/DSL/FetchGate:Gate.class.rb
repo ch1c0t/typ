@@ -6,19 +6,13 @@ end
 
 def test_for literal
   case literal
-  when Integer
-    super [:eql?, literal]
   when Symbol
-    if literal.end_with? ??
-      super
-    else
-      super [:eql?, literal]
-    end
+    literal.end_with?(??) ? super : (super [:eql?, literal])
   when Array
     literal.predicate? ? literal.to_test : (super [:eql?, literal])
   when Class
     literal.include?(Typ) ? super : (super [:eql?, literal])
   else
-    super
+    super [:eql?, literal]
   end
 end
