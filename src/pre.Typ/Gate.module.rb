@@ -1,4 +1,5 @@
 extend New
+include Name
 include DSLReaders
 
 attr_reader :it, :error
