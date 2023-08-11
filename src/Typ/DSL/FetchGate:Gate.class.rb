@@ -7,12 +7,12 @@ end
 def test_for literal
   case literal
   when Symbol
-    literal.end_with?(??) ? super : (super [:eql?, literal])
+    literal.end_with?(??) ? super : [:eql?, literal].to_test
   when Array
-    literal.predicate? ? literal.to_test : (super [:eql?, literal])
+    literal.predicate? ? literal.to_test : [:eql?, literal].to_test
   when Class
-    literal.include?(Typ) ? super : (super [:eql?, literal])
+    literal.include?(Typ) ? super : [:eql?, literal].to_test
   else
-    super [:eql?, literal]
+    [:eql?, literal].to_test
   end
 end
