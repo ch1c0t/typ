@@ -8,7 +8,7 @@ describe '.its' do
 
     good [1,2,3]
     bad [1,2], error: "#<Typ::Error::BadAssertion: 2 is [:==, 3]>"
-    bad Object, error: "#<NoMethodError: undefined method `size' for Object:Class>"
+    bad Object, error: "#<NoMethodError: undefined method 'size' for class Object>"
 
     it 'has the DSL readers' do
       gate = t.new([]).gates.first
@@ -26,7 +26,7 @@ describe '.its' do
 
     good [1,2,3]
     bad [1,2], error: "#<Typ::Error::BadAssertion: 2 is [:eql?, 3]>"
-    bad Object, error: "#<NoMethodError: undefined method `size' for Object:Class>"
+    bad Object, error: "#<NoMethodError: undefined method 'size' for class Object>"
   end
 
   context 'symbolic literals' do

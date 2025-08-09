@@ -1,6 +1,6 @@
 def fetch_check
   @fetch_check ||= begin
                      name = @kwargs[:name]
-                     -> it { it.send name }
+                     -> object { object.send name }
                    end
 end

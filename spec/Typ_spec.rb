@@ -8,15 +8,15 @@ describe Typ do
     end
   end
 
-  let(:it) { 1 }
-  let(:typ) { typ_class.new it }
+  let(:object) { 1 }
+  let(:typ) { typ_class.new object }
 
   it '#ok?' do
     assert { typ.ok? }
   end
 
   it '#it' do
-    assert { typ.it.eql? it }
+    assert { typ.object.eql? object }
   end
 
   it '#gates' do

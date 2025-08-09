@@ -11,7 +11,7 @@ include Gate
 attr_reader :gates, :fails
 
 def check
-  @gates = self.class.gates.map { |gate| gate.new it }
+  @gates = self.class.gates.map { |gate| gate.new object }
   @fails = gates.reject &:ok?
   fails.empty?
 end

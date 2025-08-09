@@ -8,7 +8,7 @@ describe '.is' do
 
     good []
     bad [1], error: '#<Typ::Error::BadAssertion: [1] is empty?>'
-    bad 42, error: "#<NoMethodError: undefined method `empty?' for 42:Integer>"
+    bad 42, error: "#<NoMethodError: undefined method 'empty?' for an instance of Integer>"
   end
 
   context 'when an Array was passed' do

@@ -2,10 +2,10 @@ extend New
 include Name
 include DSLReaders
 
-attr_reader :it, :error
+attr_reader :object, :error
 
-def initialize it
-  @it = it
+def initialize object
+  @object = object
   @ok = begin
           check
         rescue => e

@@ -1,7 +1,7 @@
 def augment_gate_with_check test
   check = Module.new do
     define_method :check do
-      test[it]
+      test[object]
     end
   end
 

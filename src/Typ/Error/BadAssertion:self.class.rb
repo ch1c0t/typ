@@ -1,4 +1,4 @@
-def initialize it, method_name
-  message = "#{it.inspect} is #{method_name}"
+def initialize object, method_name
+  message = "#{object.inspect} is #{method_name}"
   super message
 end

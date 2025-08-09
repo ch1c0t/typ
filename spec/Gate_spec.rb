@@ -9,8 +9,8 @@ describe Typ::Gate do
       end
     end
 
-    let(:it) { 1 }
-    let(:typ) { typ_class.new it }
+    let(:object) { 1 }
+    let(:typ) { typ_class.new object }
     let(:gate) { typ.gates.first }
 
     it '#dsl_method' do
